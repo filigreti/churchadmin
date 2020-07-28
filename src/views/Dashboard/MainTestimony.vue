@@ -2,11 +2,11 @@
   <main>
     <route-info />
     <div class="mt-12 flex lg:flex-row flex-col lg:justify-between">
-      <h1 class="text-2xl tracking-wide text-gray-800 font-medium">New Converts List</h1>
+      <h1 class="text-2xl tracking-wide text-gray-800 font-medium">Approve Testimonies</h1>
       <input
         class="bg-gray-100 font-light max-w-md lg:mt-0 mt-4 w-full focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 pl-4 lg:px-4 block appearance-none leading-normal"
         type="string"
-        placeholder="Search converts"
+        placeholder="Search Testimonies"
       />
     </div>
     <div class="lg:overflow-hidden lg:px-2 overflow-x-auto">
@@ -17,23 +17,21 @@
             <th class="px-12 py-3">Fullname</th>
             <th class="px-12 py-3">State/Country</th>
             <th class="px-16 py-3">Address</th>
-            <th class="py-3">Mobile</th>
+            <th class="py-3">Approve/ Decline</th>
           </tr>
         </thead>
         <tbody>
           <tr
             class="text-xs font-light tracking-wide text-gray-600 cursor-pointer"
-            v-for="(convert,index) in converts.results"
+            v-for="(testimony,index) in allTestimonies.results"
             :key="index"
             @click="send(testimony.id)"
           >
             <td class="border px-4 py-2">{{ index + 1 }}</td>
-            <td class="border px-4 py-2">{{convert.first_name}} {{convert.last_name}}</td>
-            <td class="border px-4 py-2">{{convert.state}} / {{convert.attendee_country}}</td>
-            <td class="border px-4 py-2">{{convert.address ? convert.address : `None `}}</td>
-            <td class="border px-4 py-2">{{convert.mobile_number}}</td>
-
-            <!-- <td class="border px-4 py-2">
+            <td class="border px-4 py-2">{{testimony.full_name}}</td>
+            <td class="border px-4 py-2">{{testimony.state}} / {{testimony.country}}</td>
+            <td class="border px-4 py-2">{{testimony.address ? testimony.address : `None `}}</td>
+            <td class="border px-4 py-2">
               <div class="flex">
                 <div
                   :class="{'border bg-blue-500 text-white':testimony.approved}"
@@ -44,7 +42,7 @@
                   class="rounded-full h-10 text-xs flex justify-center items-center ml-6 w-10 border"
                 >No</div>
               </div>
-            </td>-->
+            </td>
           </tr>
         </tbody>
       </table>
@@ -89,7 +87,7 @@
           <g />
         </svg>
       </span>
-      {{$store.state.currentPage}} of {{converts.count}}
+      {{$store.state.currentPage}} of {{allTestimonies.count}}
       <span>
         <svg
           @click="next"
@@ -136,28 +134,38 @@
 import { mapGetters } from "vuex";
 export default {
   computed: {
-    ...mapGetters(["getAllConverts"]),
-    converts() {
-      return this.getAllConverts;
+    ...mapGetters(["getAllTestimonies"]),
+    allTestimonies() {
+      return this.getAllTestimonies;
     }
   },
   methods: {
+    send(x) {
+      this.$router.push({
+        name: "Approve Testimony",
+        params: {
+          id: x
+        }
+      });
+    },
     async next() {
       if (this.$store.state.currentPage < this.allTestimonies.count) {
         this.$store.commit("addPage");
-        await this.$store.dispatch("getConverts");
+        await this.$store.dispatch("getTestimonies");
       }
     },
     async previous() {
       if (this.$store.state.currentPage > 1) {
         this.$store.commit("removePage");
-        await this.$store.dispatch("getConverts");
+        await this.$store.dispatch("getTestimonies");
       }
     }
   },
+  mounted() {
+    console.log(this.allTestimonies, "lool");
+  },
   async created() {
-    let res = await this.$store.dispatch("getConverts");
-    console.log(this.converts, "mokio");
+    await this.$store.dispatch("getTestimonies");
   }
 };
 </script>

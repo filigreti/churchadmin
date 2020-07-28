@@ -84,7 +84,7 @@
         <h1 class="cursor-pointer font-medium text-center pt-2 pb-1">Bible School</h1>
       </div>
       <div
-        @click="$router.push({name:'Media'})"
+        @click="$router.push({name:'Audio'})"
         class="text-gray-700 hover:text-black h-40 shadow-xs rounded-lg p-4 hover:border-gray-300 hover:border"
       >
         <div class="border rounded-lg flex justify-center items-center hover:border-gray-300 py-8">
@@ -154,6 +154,27 @@
           </svg>
         </div>
         <h1 class="cursor-pointer font-medium text-center pt-2 pb-1">Testimonies</h1>
+      </div>
+      <div
+        @click="$router.push({name:'Articles'})"
+        class="text-gray-700 hover:text-black h-40 shadow-xs rounded-lg p-4 hover:border-gray-300 hover:border"
+      >
+        <div class="border rounded-lg flex justify-center items-center hover:border-gray-300 py-8">
+          <svg
+            class="w-10 h-10 fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M16.81 13H4.75a.75.75 0 01-.75-.75v-4.5c0-.41.34-.75.75-.75h14.5c.41 0 .75.34.75.75V10a.75.75 0 01-1.5 0V8.5h-13v3h11.31a.75.75 0 010 1.5zM13.82 15.99H4.8a.75.75 0 010-1.5h9.02a.75.75 0 010 1.5zM10.84 18.99H4.8a.75.75 0 010-1.5h6.04a.75.75 0 010 1.5zM12.53 24a.75.75 0 01-.74-.88l.53-3c.03-.16.1-.3.2-.4l7.43-7.43c.32-.32.65-.51 1-.58.47-.1.94.04 1.3.4l1.24 1.24c.68.68.68 1.8 0 2.48l-7.43 7.42c-.1.11-.25.18-.4.2l-3 .54a.83.83 0 01-.13.01zm3-1.28h.01zm-1.77-2.11l-.3 1.71 1.7-.3 7.27-7.26c.1-.1.1-.25 0-.35l-1.23-1.23-.19.17z"
+            />
+            <path
+              d="M9.83 22H2.75A2.75 2.75 0 010 19.25V2.75A2.75 2.75 0 012.75 0h18.5A2.75 2.75 0 0124 2.75v7.29a.75.75 0 01-1.5 0V2.75c0-.69-.56-1.25-1.25-1.25H2.75c-.69 0-1.25.56-1.25 1.25v16.5c0 .69.56 1.25 1.25 1.25h7.08a.75.75 0 010 1.5z"
+            />
+            <path d="M23.25 5H.75a.75.75 0 010-1.5h22.5a.75.75 0 010 1.5z" />
+          </svg>
+        </div>
+        <h1 class="cursor-pointer font-medium text-center pt-2 pb-1">Articles</h1>
       </div>
     </div>
   </main>

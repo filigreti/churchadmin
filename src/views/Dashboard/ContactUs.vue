@@ -2,7 +2,7 @@
   <main>
     <route-info />
     <div class="mt-12 flex lg:flex-row flex-col lg:justify-between">
-      <h1 class="text-2xl tracking-wide text-gray-800 font-medium">Approve Testimonies</h1>
+      <h1 class="text-2xl tracking-wide text-gray-800 font-medium">Contact Us</h1>
       <input class="bg-gray-100 font-light  max-w-md lg:mt-0 mt-4 w-full  focus:outline-none focus:shadow-outline border border-gray-300 rounded-lg py-2 pl-4 lg:px-4 block  appearance-none leading-normal" type="string" placeholder="Search Testimonies" />
     </div>
     <div class="lg:overflow-hidden lg:px-2 overflow-x-auto">

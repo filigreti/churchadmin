@@ -1,5 +1,5 @@
 <template>
-  <router-view />
+  <main>Work in progress</main>
 </template>
 
 <script>

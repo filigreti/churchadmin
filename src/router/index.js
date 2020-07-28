@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Main from "../Layouts/Main.vue";
 import Dashboard from "../Layouts/Dashboard.vue";
+import store from "../store/index";
 
 Vue.use(VueRouter);
 
@@ -19,6 +20,9 @@ const routes = [{
         path: "/dashboard",
         redirect: { name: "Overview" },
         component: Dashboard,
+        meta: {
+            requiresAuth: true,
+        },
         children: [{
                 path: "overview",
                 name: "Overview",
@@ -63,15 +67,46 @@ const routes = [{
             },
             {
                 path: "media",
-                name: "Media",
                 component: () =>
                     import ("../views/Dashboard/Media.vue"),
+                children: [{
+                        path: "audio",
+                        name: "Audio",
+                        component: () =>
+                            import ("../views/Dashboard/Audio.vue"),
+                    },
+                    {
+                        path: "video",
+                        name: "Video",
+                        component: () =>
+                            import ("../views/Dashboard/Video.vue"),
+                    },
+                    {
+                        path: "pdf",
+                        name: "Pdf",
+                        component: () =>
+                            import ("../views/Dashboard/Pdf.vue"),
+                    },
+                ],
             },
             {
                 path: "testimonies",
-                name: "Testimonies",
                 component: () =>
                     import ("../views/Dashboard/Testimonies.vue"),
+                children: [{
+                        path: "main-testimony",
+                        name: "Testimonies",
+                        component: () =>
+                            import ("../views/Dashboard/MainTestimony.vue"),
+                    },
+
+                    {
+                        path: "main-testimony/:id",
+                        name: "Approve Testimony",
+                        component: () =>
+                            import ("../views/Dashboard/ApproveTestimony.vue"),
+                    },
+                ],
             },
             {
                 path: "salvation",
@@ -91,8 +126,20 @@ const routes = [{
 
 const router = new VueRouter({
     mode: "history",
-    base: process.env.BASE_URL,
     routes,
+});
+
+router.beforeEach((to, from, next) => {
+    if (to.matched.some((route) => route.meta.requiresAuth)) {
+        if (!store.state.isAuthenticated) {
+            next({
+                path: "/",
+            });
+        } else {
+            next();
+        }
+    }
+    next();
 });
 
 export default router;
