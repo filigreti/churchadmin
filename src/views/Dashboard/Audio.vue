@@ -357,7 +357,7 @@ export default {
     },
     async audio() {
       let res = await this.$store.dispatch("postAudio", this.file);
-      if (res.status == 200) {
+      if (res.status == 201) {
         alert("Audio Uploaded Succesfully");
         Object.assign(this.$data, this.$options.data.apply(this));
       }

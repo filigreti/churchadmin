@@ -142,11 +142,14 @@ export default new Vuex.Store({
                 this.dispatch("getEvents");
             }
         },
+        async getSpecificEvent({}, payload) {
+            let res = await Api.get(`/admin/event/{id}/`)
+        }
     },
     modules: {},
     plugins: [
         createPersistedState({
-            paths: ["userDetails", "isAuthenticated"],
+            paths: ["userDetails", "isAuthenticated", "events"],
         }),
     ],
 });

@@ -35,8 +35,10 @@ export default {
   data() {
     return {
       user: {
-        email: "charles@gmail.com",
-        password: "charles12345"
+        email: "",
+        password: ""
+        // email: "charles@gmail.com",
+        // password: "charles12345"
       }
     };
   },
