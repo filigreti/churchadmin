@@ -57,8 +57,11 @@
       </div>-->
     </form>
     <div class="lg:px-2 overflow-x-auto mt-8">
-      <div>
-        <input v-model="search" type="text" class="border py-2 rounded-full w-64 mb-3 focus:outline-none pl-5 text-sm text-gray-600 font-light" />
+      <div class="relative flex items-center mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 515.558 515.558" class="w-4 h-4 text-gray-600 fill-current  ml-2 absolute" viewBox="0 0 515.558 515.558">
+          <path d="m378.344 332.78c25.37-34.645 40.545-77.2 40.545-123.333 0-115.484-93.961-209.445-209.445-209.445s-209.444 93.961-209.444 209.445 93.961 209.445 209.445 209.445c46.133 0 88.692-15.177 123.337-40.547l137.212 137.212 45.564-45.564c0-.001-137.214-137.213-137.214-137.213zm-168.899 21.667c-79.958 0-145-65.042-145-145s65.042-145 145-145 145 65.042 145 145-65.043 145-145 145z" />
+        </svg>
+        <input placeholder="Search Name, Email, Registration no" v-model="search" type="text" class="   border py-2 rounded-full  max-w-xs w-full  focus:outline-none pl-8 text-sm text-gray-600 font-light" />
       </div>
       <table class="table-auto w-full">
         <thead>
@@ -147,29 +150,7 @@ export default {
           fuse.search(this.search).map((x) => search.push(x.item));
           return search.slice(firstPostIndex, lastPostIndex);
         }
-        // return (
-        //   this.event.event_attendees
-        //     // .filter((k) => {
-        //     //   return (
-        //     //     k.reg_no
-        //     //       .toLowerCase()
-        //     //       // k.attendee_last_name || // k.attendee_first_name ||
-        //     //       // k.attendee_email_address
-        //     //       .match(this.search.toLowerCase())
-        //     //   );
-        //     // })
-        //     .slice(firstPostIndex, lastPostIndex)
-        // );
       }
-
-      //     return pageNumbers.filter(k => {
-      //   return (
-      //     k.attendee_first_name ||
-      //     k.attendee_last_name ||
-      //     k.attendee_mobile_number ||
-      //     k.attendee_email_address
-      //   ).match(this.search);
-      // });
     },
   },
 
