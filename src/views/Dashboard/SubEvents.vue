@@ -105,8 +105,15 @@
         >Create</button>
       </div>-->
     </form>
-    <div class="lg:px-2 overflow-x-auto">
-      <table class="table-auto w-full mt-8">
+    <div class="lg:px-2 overflow-x-auto mt-8">
+      <div>
+        <input
+          v-model="search"
+          type="text"
+          class="border py-2 rounded-full w-64 mb-3 focus:outline-none pl-5 text-sm text-gray-600 font-light"
+        />
+      </div>
+      <table class="table-auto w-full">
         <thead>
           <tr class="text-xs bg-gray-100 border-l border-t border-r capitalise">
             <th class="py-3">#</th>
@@ -162,6 +169,21 @@
 
 <script>
 export default {
+  data() {
+    return {
+      search: "",
+      totalPage: null,
+      currentPage: 1,
+      total: 8,
+      lastPostIndex: null,
+      firstPostIndex: null,
+
+      event: {
+        event_title: "",
+        event_attendees: []
+      }
+    };
+  },
   computed: {
     pagination() {
       let pageNumbers = [];
@@ -171,25 +193,34 @@ export default {
       return pageNumbers;
     },
     currentPost() {
-      let lastPostIndex = this.currentPage * this.total;
-      let firstPostIndex = lastPostIndex - this.total;
+      if (this.event.event_attendees.length) {
+        let lastPostIndex = this.currentPage * this.total;
+        let firstPostIndex = lastPostIndex - this.total;
 
-      return this.event.event_attendees.slice(firstPostIndex, lastPostIndex);
+        return this.event.event_attendees
+          .filter(k => {
+            return (
+              k.attendee_first_name.toLowerCase() ||
+              k.attendee_last_name
+                .toLowerCase() // k.attendee_last_name || // k.attendee_first_name ||
+                // k.attendee_email_address
+                .match(this.search.toLowerCase())
+            );
+          })
+          .slice(firstPostIndex, lastPostIndex);
+      }
+
+      //     return pageNumbers.filter(k => {
+      //   return (
+      //     k.attendee_first_name ||
+      //     k.attendee_last_name ||
+      //     k.attendee_mobile_number ||
+      //     k.attendee_email_address
+      //   ).match(this.search);
+      // });
     }
   },
-  data() {
-    return {
-      totalPage: null,
-      currentPage: 1,
-      total: 8,
-      lastPostIndex: null,
-      firstPostIndex: null,
 
-      event: {
-        event_title: ""
-      }
-    };
-  },
   methods: {
     paginate(x) {
       this.currentPage = x;
