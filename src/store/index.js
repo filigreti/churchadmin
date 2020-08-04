@@ -27,12 +27,19 @@ export default new Vuex.Store({
             previous: "",
             results: "",
         },
+        contacts: {
+            count: '',
+            next: '',
+            previous: "",
+            results: "",
+        },
         currentPage: 1,
     },
     getters: {
         getEvents: (state) => state.events,
         getAllTestimonies: (state) => state.testimonies,
-        getAllConverts: (state) => state.converts
+        getAllConverts: (state) => state.converts,
+        getAllContacts: (state) => state.contacts
     },
     mutations: {
         default (state) {
@@ -50,6 +57,13 @@ export default new Vuex.Store({
             state.events.next = data.next;
             state.events.previous = data.previous;
             state.events.results = data.results;
+        },
+        setContacts(state, payload) {
+            let data = {...state.contacts, ...payload };
+            state.contacts.count = data.count;
+            state.contacts.next = data.next;
+            state.contacts.previous = data.previous;
+            state.contacts.results = data.results;
         },
         setTestimonies(state, payload) {
             let data = {...state.testimonies, ...payload };
@@ -133,6 +147,11 @@ export default new Vuex.Store({
         async getEvents({ commit, state }) {
             let res = await Api.get(`/admin/events/?page=${state.currentPage}`, true);
             commit("setEvents", res);
+            return res;
+        },
+        async getContacts({ commit, state }) {
+            let res = await Api.get(`/admin/contact-us/?page=${state.currentPage}`, true);
+            commit("setContacts", res);
             return res;
         },
         async deleteEvent({}, payload) {
