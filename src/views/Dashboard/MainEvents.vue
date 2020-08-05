@@ -37,7 +37,6 @@
             <div class="flex items-center">
               <h1 class="text-base font-light text-gray-700 tracking-wide">Time</h1>
               <input
-                required
                 v-model="event.event_time"
                 class="bg-gray-100 font-light ml-5 focus:outline-none focus:shadow-outline border border-gray-300 rounded-full py-2 pl-4 lg:px-4 block w-full appearance-none leading-normal"
                 type="time"
@@ -196,7 +195,7 @@ export default {
         event_end_date: "",
         address: "",
         description: "",
-        event_flyer: ""
+        event_flyer: "",
       },
       liveimage: null,
       file: "",
@@ -207,8 +206,8 @@ export default {
         "https://godscaremissionsinc.org/wp-content/uploads/2020/02/PST-DJIMAS-1.jpg",
         "https://godscaremissionsinc.org/wp-content/uploads/2020/02/MAROUA-003.jpg",
         "https://godscaremissionsinc.org/wp-content/uploads/2020/02/NGOUNDERE.jpg",
-        "https://godscaremissionsinc.org/wp-content/uploads/2020/02/GAROUA-FLYER-2020-768x1038.png"
-      ]
+        "https://godscaremissionsinc.org/wp-content/uploads/2020/02/GAROUA-FLYER-2020-768x1038.png",
+      ],
     };
   },
   methods: {
@@ -217,12 +216,12 @@ export default {
       const ref = this.$firebase.storage().ref();
       const name = new Date() + "-" + this.imageFile.name;
       const metadata = {
-        contentType: this.imageFile.type
+        contentType: this.imageFile.type,
       };
       const task = ref.child(name).put(this.imageFile, metadata);
       task
-        .then(snapshot => snapshot.ref.getDownloadURL())
-        .then(url => {
+        .then((snapshot) => snapshot.ref.getDownloadURL())
+        .then((url) => {
           this.event.event_flyer = url;
           this.liveimage = url;
         });
@@ -243,7 +242,7 @@ export default {
     },
     deleteEvents(x) {
       this.$store.dispatch("deleteEvent", x);
-    }
+    },
   },
   computed: {
     ...mapGetters(["getEvents"]),
@@ -255,16 +254,16 @@ export default {
     },
     allEvents() {
       return this.getEvents;
-    }
+    },
   },
 
   components: {
     Carousel,
-    Slide
+    Slide,
   },
   mounted() {
     console.log(this.getEvents);
-  }
+  },
 };
 </script>
 

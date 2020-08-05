@@ -145,7 +145,7 @@ export default new Vuex.Store({
             return res;
         },
         async getEvents({ commit, state }) {
-            let res = await Api.get(`/admin/events/?page=${state.currentPage}`, true);
+            let res = await Api.get(`/admin/events/`, true);
             commit("setEvents", res);
             return res;
         },
