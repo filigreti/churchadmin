@@ -228,7 +228,7 @@ export default {
     },
     async createNewEvent() {
       // console.log(this.event);
-      let res = await this.$store.dispatch("createAdminEvent", this.event);
+      let res = await this.$store.dispatch("createAdminEvents", this.event);
       if (res.status == 201) {
         this.event.title = "";
         this.event.event_time = "";
@@ -236,12 +236,10 @@ export default {
         this.event.event_end_date = "";
         this.event.description = "";
         this.event.address = "";
+        this.event.event_flyer = "";
         alert("Event created successfully");
         await this.$store.dispatch("getEvents");
       }
-    },
-    deleteEvents(x) {
-      this.$store.dispatch("deleteEvent", x);
     },
   },
   computed: {
@@ -260,9 +258,6 @@ export default {
   components: {
     Carousel,
     Slide,
-  },
-  mounted() {
-    console.log(this.getEvents);
   },
 };
 </script>

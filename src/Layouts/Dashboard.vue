@@ -124,11 +124,11 @@ export default {
     signout() {
       this.$store.dispatch("logout");
       this.$router.push("/");
-    }
+    },
   },
-  created() {
-    this.$store.dispatch("getEvents");
-  }
+  async created() {
+    await this.$store.dispatch("getEvents");
+  },
 };
 </script>
 

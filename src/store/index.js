@@ -114,8 +114,8 @@ export default new Vuex.Store({
         async createArticle({}, payload) {
             let res = await Api.post("/admin/article/create");
         },
-        async createAdminEvent({}, payload) {
-            let res = await Api.post("/admin/event/create", payload, true);
+        async createAdminEvents({}, payload) {
+            let res = await Api.post("/admin/event/create/", payload, true);
             return res;
         },
         async getTestimonies({ commit, state }, payload) {
