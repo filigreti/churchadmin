@@ -147,6 +147,7 @@ export default new Vuex.Store({
         async getEvents({ commit, state }) {
             let res = await Api.get(`/admin/events/`, true);
             commit("setEvents", res);
+            console.log(res, 'whats the issue')
             return res;
         },
         async getContacts({ commit, state }) {
