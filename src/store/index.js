@@ -140,6 +140,10 @@ export default new Vuex.Store({
             let res = await Api.post('/admin/video/', payload, true)
             return res
         },
+        async zoom({}, payload) {
+            let res = await Api.put('/admin/zoom-meeting/', payload, true)
+            return res
+        },
         async disapprove({}, payload) {
             let res = await Api.get(`/admin/testimony/dis-approve/${payload}/`, true);
             return res;

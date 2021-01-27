@@ -6,7 +6,9 @@
         @submit.prevent="adminLogin"
         class="max-w-md w-full flex flex-col items-center shadow-xs rounded-md bg-white mt-8 py-6 px-16 m-5"
       >
-        <h1 class="text-base text-gray-800 text-center font-medium">Username</h1>
+        <h1 class="text-base text-gray-800 text-center font-medium">
+          Username
+        </h1>
         <input
           required
           v-model="user.email"
@@ -15,7 +17,9 @@
           name
           id
         />
-        <h1 class="text-base text-gray-800 mt-6 text-center font-medium">Password</h1>
+        <h1 class="text-base text-gray-800 mt-6 text-center font-medium">
+          Password
+        </h1>
         <input
           required
           v-model="user.password"
@@ -24,7 +28,11 @@
           name
           id
         />
-        <button class="mt-10 w-full bg-black text-white font-normal py-2 rounded-full">Login</button>
+        <button
+          class="mt-10 w-full bg-black text-white font-normal py-2 rounded-full"
+        >
+          Login
+        </button>
       </form>
     </div>
   </main>
@@ -35,11 +43,11 @@ export default {
   data() {
     return {
       user: {
-        email: "",
-        password: ""
-        // email: "charles@gmail.com",
-        // password: "charles12345"
-      }
+        // email: "",
+        // password: ""
+        email: "charles@gmail.com",
+        password: "charles12345",
+      },
     };
   },
   methods: {
@@ -48,8 +56,8 @@ export default {
       if (res.status == 200) {
         this.$router.push("/dashboard");
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
